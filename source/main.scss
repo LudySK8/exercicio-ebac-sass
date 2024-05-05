@@ -1,0 +1,109 @@
+@use 'config/reset';
+@use 'config/variaveis';
+@use 'sass:math';
+
+@mixin container {
+    max-width: $container-max-width;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@mixin header {
+    background-color: $text-color;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+@mixin menu {
+    display: flex;
+}
+
+@mixin product-item {
+    img {
+        width: 100%;
+        border-radius: $product-border-radius;
+    }
+
+    .product-button {
+        display: block;
+        background-color: $primary-color;
+        color: #fff;
+        text-align: center;
+        padding: $product-padding 0;
+        border-radius: $product-button-border-radius;
+        margin-top: $product-margin-bottom;
+        text-decoration: none;
+
+        &:hover {
+            background-color: $secondary-color;
+        }
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+}
+
+body {
+    background-color: $background-color;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    @include container;
+}
+
+header {
+    @include header;
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+    }
+}
+
+.menu {
+    @include menu;
+    li {
+        font-weight: bold;
+        margin-left: $menu-margin-left;
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+}
+
+section {
+    padding: 56px 0;
+}
+
+.products {
+    margin-top: $product-margin-top;
+    display: grid;
+    grid-template-columns: repeat(3, 32.66%);
+    column-gap: 1%;
+    row-gap: 4%;
+    width: 100%;
+
+    @media screen and (max-width: 1023px) {
+        grid-template-columns: repeat(2, 48.5%);
+        column-gap: 3%;
+    }
+
+    @media screen and (max-width: 767px) {
+        display: block;
+
+        .product-item {
+            margin-bottom: 32px;
+        }
+    }
+}
